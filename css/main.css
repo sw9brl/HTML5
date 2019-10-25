@@ -5,18 +5,19 @@
    ========================================================================== */
 
 
+   div[data-post-category="JS"] {
+     background-color: lightgreen;
+   }
 
+   div[data-post-category="PHP"] {
+     background-color: lightgray;
+   }
 
+   div[data-post-category="Angular"] {
+     background-color: tomato;
+   }
 
-
-
-
-
-
-
-
-
-
-
-
-
+   #dataAttribute .card::before {
+     content: '# '  attr(data-post-number);
+     font-weight: bolder;
+   }
