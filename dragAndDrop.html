@@ -1,0 +1,430 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Mega Série HTML5 - Drag And Drop</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+            
+            .boxshadow .block {
+              box-shadow:0 10px 10px rgba(0, 0, 0, 0.3);
+            }
+            
+            .no-boxshadow .block {
+               border: 1px solid #CCC;
+               border-bottom: 10px solid #CCC;
+               padding: 3px;
+               margin-bottom: 20px;
+            }
+            
+            
+            .alert-box {
+                padding: 1.3rem;
+                border-width: 0 0 0 0.35rem;
+                font-family: 'Open Sans', sans-serif;
+                font-size: 2rem;
+                border: 4px solid transparent;
+            }
+            
+            .alert-box.radius {
+                border-radius: 0.6rem;
+            }
+       
+            .alert-box.primary {
+                border-left-color: #adb2bd;
+                border-right-color: #adb2bd;
+                border-top-color: #adb2bd;
+                border-bottom-color: #adb2bd;
+                background-color: #ced1d7;
+                border-style: dashed;
+            }
+                 
+            /* Agrega um texto na classe 
+            pseudo-elemento after*/
+            .alert-box.primary::after {
+              content: "Solte Itens Aqui";
+            }
+                
+            .alert-box.primary.file-box:after {
+              content: "Solte Arquivos Aqui";
+            }
+
+
+            .alert-box.danger {
+                border-color: #b22a2a;
+                background-color: #ffff;
+                border-style: dashed;
+                
+            }
+            
+            /* Agrega um texto na classe 
+            pseudo-elemento after*/
+            .alert-box.danger::after {
+              content: "Proibido Soltar Arquivos Aqui";
+              color: #f90404;
+            }
+            
+
+            
+        </style>
+     
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <!-- Incluindo a biblioteca Modernizr no projeto -->
+        <script src="js/vendor/modernizr/modernizr.js"></script>
+        
+        <script src="js/loader.js"></script>
+
+        <script>
+          //Modernizr - Testando se o DnD eh compativel com os navegadores
+          if (Modernizr.hasEvent('dragstart') && Modernizr.hasEvent('drop')) {
+            console.info("Drag And Drop Compatível");
+          } else {
+            console.info("O Navegador atual não dá suporte ao recurso DnD!!!");
+          }
+            
+        </script>
+        
+
+    </head>
+    
+    
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Meu Projeto HTML5</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+         
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>HTML5 - Drag And Drop</h1>
+        <p>Aqui explico passo a passo como implementar o recurso de arrastar -> soltar utilizando simplemente o HTML5. 
+        Quer aprender mais sobre desenvolvimento Web e Hibrido? Então visite meu Blog e Canal</p>
+        <p><a class="btn btn-primary btn-lg" href="http://blog.sw9.com.br" role="button">Ir Para o Meu Blog &raquo;</a></p>
+      </div>
+    </div>
+    <div class="container">
+       <div class="block">
+          <ol class="breadcrumb">
+            <li><a href="index.html">Principal</a></li>
+            <li class="active"><a href="dragAndDrop.html">Drag And Drop</a></li>
+            
+          </ol>
+        </div>
+    </div>
+    
+    <div class="container">
+      
+      
+      <div class="row" id="fileZone">
+           <div class="col-md-12">
+             <div class="panel panel-danger">
+              <div class="panel-heading">
+                <h3 class="panel-title">Lista de Documentos</h3>
+              </div>
+              <div class="panel-body">
+                 <div class="alert-box primary file-box" ondragover="overFileAction(event)" ondrop="dropFileAction(event)"></div>
+                 <div id ="documentos"></div>
+              </div>
+             </div>
+          </div>
+      </div>  
+      
+      
+              <!-- Example row of columns -->
+        <div class="row" id="cardZone">
+          <div class="col-md-4">
+            <div class="panel panel-info">
+              <div class="panel-heading">
+                <h3 class="panel-title">A Fazer</h3>
+              </div>
+              <div class="panel-body" >
+                <div class="thumbnail" id="10" draggable="true" ondragstart="dragStart(event)">
+                  <h3><span class="label label-info">Prioridade <span class="badge">4</span></span></h3>
+                  <div class="caption">
+                    <h3>Levantamento de Requisitos</h3>
+                    <p>Criar Diagrama de Sequencia</p>
+                    <p><a href="#" class="btn btn-primary" role="button">ID #10 - Detalhes</a></p>
+                  </div>
+                </div>
+                <div class="thumbnail" id="11" draggable="true" ondragstart="dragStart(event)">
+                  <h3><span class="label label-info">Prioridade <span class="badge">5</span></span></h3>
+                  <div class="caption">
+                    <h3>Levantamento de Requisitos</h3>
+                    <p>Criar Diagrama de Atividade</p>
+                    <p><a href="#" class="btn btn-primary" role="button">ID #11 - Detalhes</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="panel panel-warning">
+              <div class="panel-heading">
+                <h3 class="panel-title">Em Progresso</h3>
+              </div>
+              <div class="panel-body" >
+                <div class="alert-box" role="alert" ondragover="overAction(event)" ondrop="dropAction(event)"></div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+             <div class="panel panel-success">
+              <div class="panel-heading">
+                <h3 class="panel-title">Concluído</h3>
+              </div>
+              <div class="panel-body" >
+                 <div class="alert-box" role="alert" ondragover="overAction(event)" ondrop="dropAction(event)"></div>
+              </div>
+          </div>
+        </div>
+      </div>
+  
+      
+         
+        <hr>
+  
+        <footer>
+          <p>&copy; SW9 - 2018</p>
+        </footer>
+    </div> 
+    <!-- /container -->   
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+        
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+        
+       <script>
+         
+         function dragStart(event) {
+           event.dataTransfer.setData("text/plain", event.target.id);
+           console.log('event.target.id', event.target.id);
+           
+           
+            //Gerar um efeito de transparência durante o arraste
+            event.target.style.opacity = .5;
+          
+            //Definindo uma imagem de arraste
+            const img = new Image(32, 32); //new Image(32, 32); 
+            
+            //Obtendo uma imagem vetorial ou não
+            img.src = 'images/task-32px.png'; 
+            
+            //setDragImage - parametros: imagem, deslocamento eixo x, deslocamento eixo y
+            //Se não definir, vai pegar como default o elemento que está sendo arrastado
+            //Se definir como setDragImage(event.target, -20, -30) - Vai pegar o elemento default e ajustá-lo conforme coordenada
+            //Se definir como setDragImage(img, -20, -30) - Vai usar a imagem customizada que criamos como referência
+            event.dataTransfer.setDragImage(img, -20, -30);
+           
+           //Copy, Link, Move
+           //Define o tipo de operação que o elemento pode fazer
+           event.dataTransfer.effectAllowed = 'move';
+         }
+         
+         function overAction (event) {
+            
+            //Prevenir o comportamento normal do navegador
+            event.preventDefault();
+             
+            //Copy, Link, Move
+            //Define o tipo de operação que a dropzone está autorizada a aceitar
+            event.dataTransfer.dropEffect = 'move'; 
+             
+            console.log("Efeito Disponível => ", event.dataTransfer.dropEffect); 
+             
+
+          }
+      
+          function dropAction (event) {
+          
+            //Previnir o comportamento de abertura de link (comportamento padrão do navegador quando um elemento é solto)
+            event.preventDefault();
+          
+            //Recuperando o id do elemento que está sendo arrastado (id salvo durante o evento dragstart)   
+            const dados = event.dataTransfer.getData("text/plain");
+          
+            console.log("Dados => ", event.target);
+          
+            //Recuperando o elemento a partir do id
+            const elemento = document.getElementById(dados);
+          
+            try {
+              //Incluindo este elemento no destino via appendChild
+              event.target.parentNode.appendChild(elemento);
+            } catch(error) {
+              console.error("Não Foi Possível Completar o Drop");
+              
+              if ( event.target.className === "alert-box danger") {
+                  event.target.className = "alert-box";
+              }
+              
+            }
+            
+            //Deixa de exibir o alerta [solte itens aqui]
+            if ( event.target.className === "alert-box primary") {
+                event.target.className = "alert-box";
+            }
+            
+             event.stopPropagation();
+            
+          }
+          
+          //Eventos correspondentes ao card zone
+          const cardZone = document.getElementById("cardZone");
+          
+          cardZone.addEventListener("dragenter", function(event) {
+              
+              //Exibe um alerta tracejado com a mensagem [Solte Itens Aqui]
+              if (event.target.className == "alert-box") {
+                if(event.dataTransfer.effectAllowed === "move") {
+                    event.target.className = "alert-box primary";
+                } else {
+                   event.target.className = "alert-box danger";
+                }
+              }
+        
+          }, false);
+          
+           cardZone.addEventListener("dragleave", function(event) {
+              
+               if (event.target.className == "alert-box primary" || (event.target.className == "alert-box danger")) {
+                  //Retorna ao estilo padrão - sem a área tracejada
+                  event.target.className = "alert-box";
+                  
+              } 
+              
+              
+          }, false);
+  
+           cardZone.addEventListener("dragend", function( event ) {
+              
+              //Devolve ao elemento arrastado a transparência original
+              event.target.style.opacity = "";
+              
+          }, false);
+
+          //Eventos correspondentes ao file zone
+          const fileZone = document.getElementById("fileZone");
+          
+          
+          fileZone.addEventListener("dragenter", function(event) {
+              
+              event.target.style.opacity = .5;
+              
+          }, false);
+          
+         fileZone.addEventListener("dragleave", function(event) {
+            
+              event.target.style.opacity = "";
+              
+          }, false);
+  
+          //Funções para tratativa de arrastar e soltar arquivos do desktop para o navegador
+
+          //TODO: dropFileAction
+
+          function overFileAction (event) {
+            
+            event.stopPropagation();
+            //Prevenir o comportamento normal do navegador
+            event.preventDefault();
+            
+            event.dataTransfer.dropEffect = 'copy';
+            
+            console.log("Efeito Aceito Pela DropZone => ", event.dataTransfer.dropEffect);
+          
+            
+          }
+
+
+          //Funções para tratativa de arrastar e soltar arquivos do desktop para o navegador
+          function dropFileAction (event) {
+            
+              event.stopPropagation();
+              //Previnir comportamento padrão do navegador
+              event.preventDefault();
+              
+          
+
+                //Substiruir o uso de dataTransfer.getData por datatransfer.files
+                const files = event.dataTransfer.files;
+            
+                //Armazenando o resultado de varredura de cada arquivo
+                const output = [];
+                
+                try {
+                
+                  for (let i = 0, f; f = files[i]; i++) {
+                    
+                    let div = document.createElement("div");
+                    let conteudo = '';
+                    
+                    div.className = "alert alert-warning alert-dismissible";
+                    
+                    conteudo = "<button type='button' class='close' data-dismiss='alert' aria-label='Close'>";
+                    conteudo += "<span aria-hidden='true'>&times;</span></button>";
+                    conteudo += "<strong>" + escape(f.name) + "</strong>"; 
+                    conteudo += " (" + (f.type || "n/a") + ") - ";
+                    conteudo += f.size + " bytes, última modificação: ";
+                    conteudo += f.lastModifiedDate ? f.lastModifiedDate.toLocaleDateString() : "n/a";
+                    
+                    div.innerHTML = conteudo;
+                    
+                    document.getElementById('documentos').appendChild(div); 
+                  
+                    event.target.style.opacity = "";
+                   
+                  }
+                  
+                } catch(error) {
+                  console.error("Não Foi Possível Completar o Drop => ", error);
+                }
+            
+            }
+
+         
+       </script>
+        
+    </body>
+</html>

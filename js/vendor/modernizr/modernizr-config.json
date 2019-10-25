@@ -1,0 +1,22 @@
+{
+  "minify": true,
+  "options": [
+    "setClasses",
+    "hasEvent"
+  ],
+  "feature-detects": [
+    "test/canvas",
+    "test/emoji",
+    "test/geolocation",
+    "test/input",
+    "test/inputsearchevent",
+    "test/inputtypes",
+    "test/intl",
+    "test/json",
+    "test/notification",
+    "test/css/boxshadow",
+    "test/css/gradients",
+    "test/css/resize",
+    "test/file/api"
+  ]
+}

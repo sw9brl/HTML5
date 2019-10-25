@@ -1,0 +1,341 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Mega Série HTML5 - Formularios e Validação</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <style>
+            body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+            
+           
+           input:valid {
+              background: #98FB98;
+            }
+           input:invalid {
+            background: #cc5353;
+          }
+      
+        </style>
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+
+        <script src="js/vendor/modernizr/modernizr.js"></script>
+        <script src="js/loader.js"></script>
+        
+      
+        <script>
+          
+          
+          if((! Modernizr.inputtypes.date) || (! Modernizr.inputtypes.color) || (! Modernizr.inputtypes.number) || (! Modernizr.inputtypes.range)) {
+            
+            loadScript('js/polyfill/', ['polyfiller']);
+            loadScript('js/polyfill/', ['config']);
+            
+            
+          }
+          
+        </script>
+        
+    
+        <style>
+        
+        
+        .boxshadow .block {
+          box-shadow:0 10px 10px rgba(0,0,0,0.3);
+          
+        }
+        
+        .no-boxshadow .block {
+           border: 1px solid #CCC;
+           border-bottom: 10px solid #CCC;
+           padding: 3px;
+           margin-bottom: 20px;
+        }
+        
+        
+         .no-js .notificacao {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+             
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+          }     
+          
+           .js .notificacao {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+      
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+            
+           
+          }
+          
+          /* Uso de pseudo elemento (adiciona conteudo estatico após o conteúdo já existente) */
+          .js .notificacao::after {
+            
+            content: "Javascript Ativado";
+          }
+          
+          
+           /* Uso de pseudo elemento (adiciona conteudo estatico após o conteúdo já existente) */
+          .no-js .notificacao::after {
+             
+             content: "Favor ativar o Javascript do Navegador";
+          }
+          
+        </style>
+        
+        
+    </head>
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Meu Projeto HTML5</a>
+        </div>
+       
+      </div>
+    </nav>
+    
+    <div class="container"><div class="notificacao">Notificação :: </div></div>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>HTML5 - Formulários</h1>
+        <p>Aqui apresento as melhorias relacionadas com formulários. Novos campos, validações e melhor experiência em dispositivos móveis. Quer aprender mais 
+        sobre desenvolvimento Web e Hibrido? Então visite meu Blog e Canal</p>
+        <p><a class="btn btn-primary btn-lg" href="http://blog.sw9.com.br" role="button">Ir Para o Meu Blog &raquo;</a></p>
+      </div>
+    </div>
+    
+    <div class="container">
+      <div class="block">
+        <ol class="breadcrumb">
+          <li><a href="index.html">Principal</a></li>
+          <li class="active"><a href="formulario.html">Formulários</a></li>
+        
+        </ol>
+      </div>
+    </div>
+
+    <div class="container">
+       <!-- Example row of columns -->
+      <form class="form-horizontal">
+        
+        <div class="form-group">
+          <label for="inputColor" class="col-sm-2 control-label">Selecione uma cor</label>
+          <div class="col-sm-10">
+           
+              <input type="color" class="form-control" id="inputColor" placeholder="">
+           
+            <span id="helpBlock" class="help-block">Ao clicar, o componente color picker será exibido (o retorno será o valor Hexadecimal da cor selecionada). Importante: Se o browser não tiver suporte, será exibido apenas um simples campo texto.</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputDate" class="col-sm-2 control-label">Selecione uma data</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="date" class="form-control" id="inputDate" placeholder="" required min="2018-07-05">
+              
+            </div>
+            
+            <span id="helpBlock" class="help-block">Ao clicar, exibe um componente para seleção de data. O tipo de componente exibido vai depender do browser e do dispositivo que se está utilizando.</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputDateTime" class="col-sm-2 control-label">Selecione uma Data e Horário</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="datetime-local" class="form-control" id="inputDatetime" placeholder="">
+              
+            </div>
+            
+            <span id="helpBlock" class="help-block">Ao clicar, exibe um componente para seleção de data e horário. Também existe a opção [datetime], mas ela tem uma compatibilidade menor. Para browsers sem suporte, será exibido um simples campo texto.</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputEmail" class="col-sm-2 control-label">Informe um E-mail</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="email" class="form-control" id="inputEmail" placeholder="Informe seu melhor E-mail">
+              
+            </div>
+            
+            <span id="helpBlock" class="help-block">Nos PCs vai aparecer apenas um campo texto. Nos dispositivos móveis, será exibido um teclado limitando apenas os caracteres válidos para a composição de um endereço de e-mail. Importante: Caso seja informado um e-mail inválido, o browser exibirá um erro.</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputMonth" class="col-sm-2 control-label">Informe seu mês e ano de nascimento</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="month" class="form-control" id="inputMonth" placeholder="">
+              
+            </div>
+            
+            <span id="helpBlock" class="help-block"></span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputWeek" class="col-sm-2 control-label">Informe uma semana</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="week" class="form-control" id="inputWeek" placeholder="">
+              
+            </div>
+            
+            <span id="helpBlock" class="help-block"></span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputTime" class="col-sm-2 control-label">Informe um horário</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="time" class="form-control" id="inputTime" placeholder="">
+              
+            </div>
+            
+            <span id="helpBlock" class="help-block"></span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputNumber" class="col-sm-2 control-label">Informe um número aqui</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="number" class="form-control" id="inputNumber" placeholder="" min="5" max="10">
+            
+            </div>
+            
+            <span id="helpBlock" class="help-block">Quando suportado, permite apenas a digitação de números. Em dispositivos móveis exibe um teclado numérico para facilitar a digitação. Nos navegadores dos Desktops, exibe um botão para incrementar e decrementar.</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputTelefone" class="col-sm-2 control-label">Informe um número de Telefone</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="tel" class="form-control" id="inputTelefone" placeholder="">
+              
+            </div>
+            
+            <span id="helpBlock" class="help-block">Este tipo de campo é similar ao campo numérico, a diferença é que sua compatibilidade é maior. Em dispositivos móveis, será exibido um teclado de telefone virtual</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputRange" class="col-sm-2 control-label">Informe um intervalo numérico</label>
+          <div class="col-sm-10">
+           
+              <input type="range" class="form-control" id="inputRange" placeholder="" min="10" max="50" step="10">
+            
+            
+            <span id="helpBlock" class="help-block">Geralmente é renderizado com um slider. Sua compatibilidade tanto em PCs como em dispositivos móveis é muito boa. A faixa padrão na maioria dos navegadores vai de 0 a 100</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputSearch" class="col-sm-2 control-label">Pesquise um termo aqui</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+            <input type="search" class="form-control" id="inputSearch" results="10" pattern="[a-zA-Z]*">
+             
+            </div>
+            
+            <span id="helpBlock" class="help-block">Enquanto nos navegadores para PC, ele é exibido com um típico campo de texto (sem adição de recursos visuais).  Em dispositivos móveis temos as seguintes características: é exibido um teclado otimizado, em grande parte dos navegadores aparece um ícone de busca e por último aparece um x (botão) que permite apagar o termo digitado </span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="inputUrl" class="col-sm-2 control-label">Digite uma URL aqui</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <input type="url" class="form-control" id="inputUrl">
+             
+            </div>
+            
+            <span id="helpBlock" class="help-block">Em dispositivos móveis apresenta um teclado otimizado para a digitação de URL. Este campo vem com o recurso de validação.</div>
+        </div>
+        
+        <div class="form-group">
+          <div class="col-sm-offset-2 col-sm-10">
+            <a class="btn btn-info" href="index.html" role="button">Voltar</a>&nbsp;&nbsp;<button type="submit" class="btn btn-default">Enviar</button>
+          </div>
+        </div>
+      </form>
+
+
+
+      <hr>
+
+      <footer>
+        <p>&copy; SW9 - 2018</p>
+      </footer>
+    </div> <!-- /container -->        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+
+        <script src="js/vendor/bootstrap.min.js"></script>
+
+        <script src="js/main.js"></script>
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+        
+        <script>
+         
+       
+          var search = document.getElementById("inputSearch");
+        
+          search.oninvalid = function(e) {
+            e.target.setCustomValidity("");
+            if (!e.target.validity.valid) {
+              e.target.setCustomValidity("Favor digitar apenas letras!!!");
+            } 
+          }
+            
+        </script>
+        
+        
+    </body>
+</html>

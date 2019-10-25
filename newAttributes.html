@@ -1,0 +1,142 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
+
+<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Mega Série HTML5 - Novos Atributos</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/main.css">
+        <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css">
+        
+        <style>
+             body {
+                padding-top: 50px;
+                padding-bottom: 20px;
+            }
+            
+        </style>
+
+        <!-- Incluindo a biblioteca Modernizr no projeto -->
+        <script src="js/vendor/modernizr/modernizr.js"></script>
+        
+    </head>
+    
+    
+    <body>
+        <!--[if lt IE 8]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Meu Projeto HTML5</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+         
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+      <div class="container">
+        <h1>Html 5 - Novos Atributos</h1>
+        <p>Neste conjunto de aulas eu explico, passo a passo, alguns novos atributos que surgiram com o HTML5. 
+        Quer aprender mais sobre desenvolvimento Web e Hibrido? Então visite meu Blog e Canal</p>
+        <p><a class="btn btn-primary btn-lg" href="http://blog.sw9.com.br" role="button">Ir Para o Meu Blog &raquo;</a></p>
+      </div>
+    </div>
+    <div class="container">
+       <div class="block">
+          <ol class="breadcrumb">
+            <li><a href="index.html">Principal</a></li>
+            <li class="active"><a href="newAttributes.html">Novos Atributos</a></li>
+            
+          </ol>
+        </div>
+    </div>
+    
+    <div class="container">
+      
+      <!-- Inicio:: Area de upload de arquivos | Vamos trabalhar apenas com imagem -->
+      <div class="row" id="download">
+          
+           <div class="col-md-8">
+             <div class="panel panel-info">
+                  <div class="panel-heading">
+                    <h3 class="panel-title">Atributo Download</h3>
+                  </div>
+                  <div class="panel-body">
+                      
+                          <button type="button" id="img1" class="btn btn-default" name="Download">Dowload Tradicional</button>
+                         
+                          <a href="http://blog.sw9.com.br/wp-content/uploads/sites/9/2018/10/Capa-V2-Console-log.png" target="blank" class="btn btn-info" download>Origem Diferente</a>
+                          <a href="images/task-32px.png" class="btn btn-info" download>Mesma Origem</a>
+                          <a href="images/task-32px.png" id="ancora" class="btn btn-info" download="imagem">Definindo Nome de arquivo</a>
+                     
+                          
+                     
+                   </div>
+                   
+                   <br>
+                  
+                </div>
+             </div>
+          </div>
+      </div>
+    
+      <div class="container">
+      
+        <hr>
+  
+        <footer>
+          <p>&copy; SW9 - 2019 | Feito com <i class="fa fa-heart text-danger"></i></p>
+        </footer>
+      </div>
+    <!-- /container -->   
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+    
+        <script src="js/vendor/bootstrap.min.js"></script>
+        
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+            e.src='//www.google-analytics.com/analytics.js';
+            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+            ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+        </script>
+        
+       <script>
+            
+            const botaoDownload = document.getElementById("ancora");
+            
+            botaoDownload.addEventListener("click", function(event) {
+             
+              console.log(botaoDownload.download);
+             
+          }, false);
+          
+            
+       </script>
+        
+    </body>
+</html>
